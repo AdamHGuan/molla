@@ -14,7 +14,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 2,
+					ownerId: 1,
 					title: "Do galaxies spin?",
 					description:
 						"Galaxies look stationary, if galaxies rotate, why can’t we see them moving?",
@@ -22,7 +22,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 3,
+					ownerId: 1,
 					title: "Why can you see the Moon even though it's daytime?",
 					description:
 						"Why do we generally always see the moon in the night and rarely during the day?",
@@ -30,7 +30,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 4,
+					ownerId: 2,
 					title: "How do galaxies form?",
 					description:
 						"How long did it take to form a galaxy like the Milky Way?",
@@ -38,14 +38,14 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 5,
+					ownerId: 2,
 					title: "What is a Supernova?",
 					description: "What leads to this event?",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 6,
+					ownerId: 3,
 					title:
 						"Is there a possibility of a 'cold' solar system or a system of planets without a star?",
 					description: "What would it be like in those environments?",
@@ -53,7 +53,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					ownerId: 7,
+					ownerId: 3,
 					title: "Can new planets form in our solar system?",
 					description: "It is possibly to see new planet in our solar system?",
 					createdAt: new Date(),
