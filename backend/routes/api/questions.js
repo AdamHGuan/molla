@@ -9,6 +9,13 @@ const { Question } = require("../../db/models");
 
 const router = express.Router();
 
+function questionNotFoundError(questionId, next) {
+	const err = new Error(`A question with ID:${questionId} could not be found.`);
+	err.title = "Question not found";
+	err.status = 404;
+	next(err);
+}
+
 // Get questions
 router.get(
 	"/",
@@ -21,18 +28,78 @@ router.get(
 	})
 );
 
+// Get single question
+router.get(
+	"/:id(\\d+)",
+	asyncHandler(async (req, res, next) => {
+		const questionId = req.params.id;
+		const question = await Question.findByPk(questionId);
+		question ? res.json({ question }) : questionNotFoundError(questionId, next);
+	})
+);
+
+const questionValidators = [
+	check("title")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a title")
+		.isLength({ max: 255 })
+		.withMessage("title must not be more than 255 characters long"),
+	check("description")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a description"),
+];
+
 // Post question
 
 router.post(
 	"/",
+	requireAuth,
+	questionValidators,
+	handleValidationErrors,
 	asyncHandler(async (req, res, next) => {
-		const { title, description } = req.body;
+		const { ownerId, title, description } = req.body;
 		const question = await Question.create({
-			ownerId: req.user.id,
+			ownerId,
 			title,
 			description,
 		});
-		res.json(question);
+		return res.json(question);
+	})
+);
+
+// Put question
+
+router.put(
+	"/:id(\\d+)",
+	requireAuth,
+	questionValidators,
+	handleValidationErrors,
+	asyncHandler(async function (req, res, next) {
+		const questionId = req.params.id;
+		const { title, description } = req.body;
+		const question = await Question.findByPk(questionId);
+
+		if (question) {
+			await question.update({ title, description });
+			return res.json(question);
+		} else {
+			questionNotFoundError(questionId, next);
+		}
+	})
+);
+
+// Delete question
+
+router.delete(
+	"/:id(\\d+)",
+	requireAuth,
+	asyncHandler(async function (req, res, next) {
+		const questionId = req.params.id;
+		const question = await Question.findByPk(questionId);
+
+		question
+			? (await question.destory()) && res.status(204).end()
+			: questionNotFoundError(questionId, next);
 	})
 );
 
