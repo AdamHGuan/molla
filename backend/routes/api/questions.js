@@ -1,11 +1,12 @@
 const express = require("express");
+const { Question } = require("../../db/models");
+
 const asyncHandler = require("express-async-handler");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth } = require("../../utils/auth");
-const { Question } = require("../../db/models");
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ function questionNotFoundError(questionId, next) {
 router.get(
 	"/",
 	asyncHandler(async (req, res, next) => {
-		const questions = await Question.findAll({ include: User });
+		const questions = await Question.findAll();
 
 		return res.json({
 			questions,
@@ -98,7 +99,7 @@ router.delete(
 		const question = await Question.findByPk(questionId);
 
 		question
-			? (await question.destory()) && res.status(204).end()
+			? (await question.destroy()) && res.status(204).end()
 			: questionNotFoundError(questionId, next);
 	})
 );
