@@ -36,7 +36,7 @@ export const getQuestions = () => async (dispatch) => {
 
 	if (response.ok) {
 		const list = await response.json();
-		dispatch(loadQuestions(list));
+		dispatch(loadQuestions(list.questions));
 	}
 };
 
@@ -100,6 +100,7 @@ const questionReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_QUESTIONS:
 			const newState = { ...state };
+			console.log(action.list);
 			action.list.forEach((question) => {
 				newState[question.id] = question;
 			});

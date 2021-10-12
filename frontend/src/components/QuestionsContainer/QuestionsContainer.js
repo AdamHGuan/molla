@@ -17,11 +17,14 @@ const QuestionsContainer = () => {
 	return (
 		<div>
 			<ul>
-				<li>
-					{questions.map((question) => (
-						<div>{question.title}</div>
-					))}
-				</li>
+				{questions.map((question) => (
+					<li key={question.id}>
+						<div>
+							<p> {question.title} </p>
+							<p> {question.description} </p>
+						</div>
+					</li>
+				))}
 			</ul>
 		</div>
 	);
