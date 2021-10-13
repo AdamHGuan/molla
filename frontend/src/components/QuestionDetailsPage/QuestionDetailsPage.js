@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router";
-
+import { useParams } from "react-router-dom";
 import { getOneQuestion } from "../../store/questions";
 
 const QuestionDetailsPage = () => {
