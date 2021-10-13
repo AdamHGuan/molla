@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // Types
 
 const LOAD_QUESTIONS = "questions/LOAD_QUESTIONS";
+const LOAD_QUESTION = "questions/LOAD_QUESTION";
 const ADD_QUESTION = "question/ADD_QUESTION";
 const EDIT_QUESTION = "question/EDIT_QUESTION";
 const DELETE_QUESTION = "question/DELETE_QUESTION";
@@ -12,6 +13,11 @@ const DELETE_QUESTION = "question/DELETE_QUESTION";
 const loadQuestions = (list) => ({
 	type: LOAD_QUESTIONS,
 	list,
+});
+
+const loadQuestion = (id) => ({
+	type: LOAD_QUESTION,
+	id,
 });
 
 const addQuestion = (question) => ({
@@ -45,7 +51,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
 
 	if (response.ok) {
 		const question = await response.json();
-		dispatch(addQuestion(question));
+		dispatch(loadQuestion(question));
 	}
 };
 

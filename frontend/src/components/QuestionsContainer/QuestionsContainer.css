@@ -1,0 +1,13 @@
+.mainQuestionscontainer {
+	display: flex;
+	flex-direction: column;
+	width: 60vh;
+	align-items: center;
+}
+
+.questionsContainer {
+	display: flex;
+	margin-bottom: 50px;
+	border: thick double orange;
+	width: 60vh;
+}

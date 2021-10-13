@@ -1,24 +1,34 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useParams } from "react-router";
 
 import { getQuestions } from "../../store/questions";
-// import styles from "./QuestionsContainer.module.css";
+// import { getOneQuestion } from "../../store/questions";
+
+import "./QuestionsContainer.css";
 
 const QuestionsContainer = () => {
 	const dispatch = useDispatch();
 	const questions = useSelector((state) => Object.values(state.questions));
+	// const { id } = useParams();
 
 	useEffect(() => {
 		dispatch(getQuestions());
 	}, [dispatch]);
 
+	// useEffect(() => {
+	// 	dispatch(getOneQuestion(id));
+	// }, [dispatch]);
+
 	return (
-		<div>
+		<div className="mainQuestionscontainer">
 			{questions.map((question) => (
-				<NavLink key={question.id} to={`/questions/${question.id}`}>
-					<p> {question.title} </p>
-				</NavLink>
+				<div className="questionsContainer">
+					<Link key={question.id} to={`/questions/${question.id}`}>
+						<p> {question.title} </p>
+					</Link>
+				</div>
 			))}
 		</div>
 	);

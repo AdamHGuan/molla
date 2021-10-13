@@ -11,7 +11,7 @@ const QuestionDetailsPage = () => {
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));
-	}, [dispatch]);
+	}, [dispatch, id]);
 
 	if (question) {
 		return (
