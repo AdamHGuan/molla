@@ -24,8 +24,8 @@ const QuestionsContainer = () => {
 	return (
 		<div className="mainQuestionscontainer">
 			{questions.map((question) => (
-				<div className="questionsContainer">
-					<Link key={question.id} to={`/questions/${question.id}`}>
+				<div className="questionsContainer" key={question.id}>
+					<Link to={`/questions/${question.id}`}>
 						<p> {question.title} </p>
 					</Link>
 				</div>

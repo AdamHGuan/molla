@@ -30,10 +30,10 @@ const editQuestion = (question) => ({
 	question,
 });
 
-const deleteQuestion = (questionId) => ({
-	type: DELETE_QUESTION,
-	questionId,
-});
+// const deleteQuestion = (questionId) => ({
+// 	type: DELETE_QUESTION,
+// 	questionId,
+// });
 
 // THUNK Actions
 
@@ -112,6 +112,11 @@ const questionReducer = (state = initialState, action) => {
 			action.list.forEach((question) => {
 				newState[question.id] = question;
 			});
+			return newState;
+		case LOAD_QUESTION:
+			newState = Object.assign({}, state);
+			question = action.question;
+			newState[question.id] = question;
 			return newState;
 		case ADD_QUESTION:
 			newState = Object.assign({}, state);

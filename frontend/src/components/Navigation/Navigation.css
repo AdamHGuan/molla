@@ -1,0 +1,8 @@
+.navbar {
+	height: 30px;
+	width: 100%vh;
+
+	display: flex;
+
+	background-color: lightsalmon;
+}
