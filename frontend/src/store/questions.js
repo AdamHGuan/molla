@@ -97,13 +97,20 @@ export const updateQuestion = (data) => async (dispatch) => {
 const initialState = {};
 
 const questionReducer = (state = initialState, action) => {
+	let newState;
+	let question;
+
 	switch (action.type) {
 		case LOAD_QUESTIONS:
-			const newState = { ...state };
-			console.log(action.list);
+			newState = Object.assign({}, state);
 			action.list.forEach((question) => {
 				newState[question.id] = question;
 			});
+			return newState;
+		case ADD_QUESTION:
+			newState = Object.assign({}, state);
+			question = action.question;
+			newState[question.id] = question;
 			return newState;
 		default:
 			return state;

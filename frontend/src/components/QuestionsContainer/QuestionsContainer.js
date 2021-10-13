@@ -5,11 +5,9 @@ import { getQuestions } from "../../store/questions";
 // import styles from "./QuestionsContainer.module.css";
 
 const QuestionsContainer = () => {
-	// Declare variables from hooks
 	const dispatch = useDispatch();
 	const questions = useSelector((state) => Object.values(state.questions));
 
-	// Use a 'react' hook and cause a side effect
 	useEffect(() => {
 		dispatch(getQuestions());
 	}, [dispatch]);
