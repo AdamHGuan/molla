@@ -6,8 +6,9 @@ import { getOneQuestion } from "../../store/questions";
 const QuestionDetailsPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const question = useSelector((state) => state.question.id);
-	console.log(`===============`, question);
+	const question = useSelector((state) => state.questions[id]);
+	const user = useSelector((state) => state.session.user);
+	const editable = user.id === question?.ownerId;
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));
@@ -17,6 +18,14 @@ const QuestionDetailsPage = () => {
 		return (
 			<div>
 				<p>{question.title}</p>
+				<div>
+					{editable && (
+						<div>
+							<button>Edit</button>
+							<button>Delete</button>
+						</div>
+					)}
+				</div>
 			</div>
 		);
 	}

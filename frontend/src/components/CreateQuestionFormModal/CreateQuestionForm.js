@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createQuestion } from "../../store/questions";
 
-const CreateQuestionForm = () => {
+const CreateQuestionForm = ({ setShowModal }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -23,7 +23,6 @@ const CreateQuestionForm = () => {
 			);
 		}
 
-
 		return validationErrors;
 	};
 
@@ -40,6 +39,7 @@ const CreateQuestionForm = () => {
 		const question = await dispatch(createQuestion(data));
 
 		if (question) {
+			setShowModal(false);
 			history.push(`/questions/${question.id}`);
 		}
 	};
@@ -68,7 +68,6 @@ const CreateQuestionForm = () => {
 					/>
 				</div>
 
-				
 				<button type="submit">Submit</button>
 			</form>
 		</div>

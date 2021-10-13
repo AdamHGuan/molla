@@ -10,7 +10,7 @@ function CreateQuestionFormModal() {
 			<button onClick={() => setShowModal(true)}>Create Question</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-					<CreateQuestionForm />
+					<CreateQuestionForm setShowModal={setShowModal} />
 				</Modal>
 			)}
 		</>

@@ -93,8 +93,8 @@ export const deleteItem = (id) => async (dispatch) => {
 	});
 
 	if (response.ok) {
-		const question = await response.json();
-		dispatch(deleteQuestion(question.id));
+		const questionId = await response.json();
+		dispatch(deleteQuestion(questionId));
 	}
 };
 
@@ -130,8 +130,7 @@ const questionReducer = (state = initialState, action) => {
 			return newState;
 		case DELETE_QUESTION:
 			newState = Object.assign({}, state);
-			question = action.question;
-			newState[question.id] = question;
+			delete newState[action.questionId];
 			return newState;
 		default:
 			return state;
