@@ -5,9 +5,9 @@ import { getOneQuestion } from "../../store/questions";
 
 const QuestionDetailsPage = () => {
 	const { id } = useParams();
-	console.log(id);
 	const dispatch = useDispatch();
-	const question = useSelector((state) => state.question[id]);
+	const question = useSelector((state) => state.question.id);
+	console.log(`===============`, question);
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));
@@ -20,6 +20,7 @@ const QuestionDetailsPage = () => {
 			</div>
 		);
 	}
+	return null;
 };
 
 export default QuestionDetailsPage;

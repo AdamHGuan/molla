@@ -15,9 +15,9 @@ const loadQuestions = (list) => ({
 	list,
 });
 
-const loadQuestion = (id) => ({
+const loadQuestion = (question) => ({
 	type: LOAD_QUESTION,
-	id,
+	question,
 });
 
 const addQuestion = (question) => ({
@@ -30,10 +30,10 @@ const editQuestion = (question) => ({
 	question,
 });
 
-// const deleteQuestion = (questionId) => ({
-// 	type: DELETE_QUESTION,
-// 	questionId,
-// });
+const deleteQuestion = (questionId) => ({
+	type: DELETE_QUESTION,
+	questionId,
+});
 
 // THUNK Actions
 
@@ -46,8 +46,8 @@ export const getQuestions = () => async (dispatch) => {
 	}
 };
 
-export const getOneQuestion = (id) => async (dispatch) => {
-	const response = await csrfFetch(`/api/questions/${id}`);
+export const getOneQuestion = (questionId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/questions/${questionId}`);
 
 	if (response.ok) {
 		const question = await response.json();
@@ -87,16 +87,16 @@ export const updateQuestion = (data) => async (dispatch) => {
 	}
 };
 
-// export const deleteItem = (id) => async (dispatch) => {
-// 	const response = await csrfFetch(`/api/items/${id}`, {
-// 		method: "delete",
-// 	});
+export const deleteItem = (id) => async (dispatch) => {
+	const response = await csrfFetch(`/api/items/${id}`, {
+		method: "delete",
+	});
 
-// 	if (response.ok) {
-// 		const question = await response.json();
-// 		dispatch(remove(question.id));
-// 	}
-// };
+	if (response.ok) {
+		const question = await response.json();
+		dispatch(deleteQuestion(question.id));
+	}
+};
 
 // Reducer
 
@@ -123,7 +123,16 @@ const questionReducer = (state = initialState, action) => {
 			question = action.question;
 			newState[question.id] = question;
 			return newState;
-
+		case EDIT_QUESTION:
+			newState = Object.assign({}, state);
+			question = action.question;
+			newState[question.id] = question;
+			return newState;
+		case DELETE_QUESTION:
+			newState = Object.assign({}, state);
+			question = action.question;
+			newState[question.id] = question;
+			return newState;
 		default:
 			return state;
 	}

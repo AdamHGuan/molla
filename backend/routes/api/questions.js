@@ -35,7 +35,7 @@ router.get(
 	asyncHandler(async (req, res, next) => {
 		const questionId = req.params.id;
 		const question = await Question.findByPk(questionId);
-		question ? res.json({ question }) : questionNotFoundError(questionId, next);
+		question ? res.json(question) : questionNotFoundError(questionId, next);
 	})
 );
 

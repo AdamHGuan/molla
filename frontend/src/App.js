@@ -22,7 +22,7 @@ function App() {
 					<Route path="/signup">
 						<SignupFormPage />
 					</Route>
-					<Route path="/questions">
+					<Route path="/questions" exact>
 						<QuestionsContainer />
 					</Route>
 					<Route path="/questions/:id" exact>
