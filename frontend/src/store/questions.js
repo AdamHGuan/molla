@@ -112,6 +112,7 @@ const questionReducer = (state = initialState, action) => {
 			question = action.question;
 			newState[question.id] = question;
 			return newState;
+
 		default:
 			return state;
 	}

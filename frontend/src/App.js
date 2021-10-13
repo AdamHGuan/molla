@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import QuestionsContainer from "./components/QuestionsContainer";
+import QuestionDetailsPage from "./components/QuestionDetailsPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
 					</Route>
 					<Route path="/questions">
 						<QuestionsContainer />
+					</Route>
+					<Route path="/questions/:id" exact>
+						<QuestionDetailsPage />
 					</Route>
 				</Switch>
 			)}

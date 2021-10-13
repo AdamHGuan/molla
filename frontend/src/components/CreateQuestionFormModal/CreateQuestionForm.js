@@ -34,13 +34,13 @@ const CreateQuestionForm = () => {
 		const errors = validate();
 		if (errors.length > 0) return setValidationErrors(errors);
 
-		const payload = {
+		const data = {
 			ownerId,
 			title,
 			description,
 		};
 
-		const question = await dispatch(createQuestion(payload));
+		const question = await dispatch(createQuestion(data));
 
 		if (question) {
 			history.push(`/questions/${question.id}`);

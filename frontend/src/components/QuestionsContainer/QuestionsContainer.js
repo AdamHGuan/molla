@@ -19,7 +19,6 @@ const QuestionsContainer = () => {
 					<li key={question.id}>
 						<div>
 							<p> {question.title} </p>
-							<p> {question.description} </p>
 						</div>
 					</li>
 				))}
