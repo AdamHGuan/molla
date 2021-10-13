@@ -9,7 +9,6 @@ const CreateQuestionForm = () => {
 
 	const ownerId = useSelector((state) => state.session.user.id);
 	const [title, setTitle] = useState("");
-	const [description, setDescription] = useState("");
 	const [validationErrors, setValidationErrors] = useState([]);
 
 	const validate = () => {
@@ -24,7 +23,6 @@ const CreateQuestionForm = () => {
 			);
 		}
 
-		if (!description) validationErrors.push("Please provide description");
 
 		return validationErrors;
 	};
@@ -37,7 +35,6 @@ const CreateQuestionForm = () => {
 		const data = {
 			ownerId,
 			title,
-			description,
 		};
 
 		const question = await dispatch(createQuestion(data));
@@ -71,16 +68,7 @@ const CreateQuestionForm = () => {
 					/>
 				</div>
 
-				<div>
-					<label htmlFor="description">Description:</label>
-					<textarea
-						id="description"
-						name="description"
-						onChange={(e) => setDescription(e.target.value)}
-						value={description}
-						required
-					/>
-				</div>
+				
 				<button type="submit">Submit</button>
 			</form>
 		</div>
