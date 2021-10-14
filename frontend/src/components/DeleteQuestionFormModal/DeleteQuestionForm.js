@@ -11,9 +11,9 @@ const DeleteQuestionForm = ({ setShowModal }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const question = await dispatch(removeQuestion(id));
+		const questionId = await dispatch(removeQuestion(id));
 
-		if (!question) {
+		if (questionId) {
 			setShowModal(false);
 			history.push(`/questions`);
 		}

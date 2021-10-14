@@ -95,6 +95,7 @@ export const removeQuestion = (id) => async (dispatch) => {
 	if (response.ok) {
 		const questionId = await response.json();
 		dispatch(deleteQuestion(questionId));
+		return questionId;
 	}
 };
 
