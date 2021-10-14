@@ -43,6 +43,7 @@ const CreateQuestionForm = ({ setShowModal }) => {
 			history.push(`/questions/${question.id}`);
 		}
 	};
+
 	return (
 		<div>
 			<h2>New Question</h2>
