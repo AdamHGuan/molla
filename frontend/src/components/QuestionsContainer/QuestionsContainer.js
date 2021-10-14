@@ -1,25 +1,18 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import { useParams } from "react-router";
 
 import { getQuestions } from "../../store/questions";
-// import { getOneQuestion } from "../../store/questions";
 
 import "./QuestionsContainer.css";
 
 const QuestionsContainer = () => {
 	const dispatch = useDispatch();
 	const questions = useSelector((state) => Object.values(state.questions));
-	// const { id } = useParams();
 
 	useEffect(() => {
 		dispatch(getQuestions());
 	}, [dispatch]);
-
-	// useEffect(() => {
-	// 	dispatch(getOneQuestion(id));
-	// }, [dispatch]);
 
 	return (
 		<div className="mainQuestionscontainer">
@@ -27,11 +20,11 @@ const QuestionsContainer = () => {
 			<div className="questionsCenterContainer">
 				{questions.map((question) => (
 					<>
-						<div key={question.id} className="questionsLinks">
-							<Link to={`/questions/${question.id}`}>
+						<Link key={question.id} to={`/questions/${question.id}`}>
+							<div className="questionsLinks">
 								<p> {question.title} </p>
-							</Link>
-						</div>
+							</div>
+						</Link>
 					</>
 				))}
 			</div>
