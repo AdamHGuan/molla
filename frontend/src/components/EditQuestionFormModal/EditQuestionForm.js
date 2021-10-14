@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateQuestion } from "../../store/questions";
 
-const UpdateQuestionPage = () => {
+const EditQuestionForm = ({ setShowModal }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const ownerId = useSelector((state) => state.session.user.id);
 	const question = useSelector((state) => state.questions[id]);
 
 	const [title, setTitle] = useState("");
+	const [validationErrors, setValidationErrors] = useState([]);
 
 	const validate = () => {
 		const validationErrors = [];
@@ -32,14 +34,15 @@ const UpdateQuestionPage = () => {
 		if (errors.length > 0) return setValidationErrors(errors);
 
 		const data = {
-			ownerId,
+			id,
 			title,
 		};
 
 		const question = await dispatch(updateQuestion(data));
 
 		if (question) {
-			history.push(`/questions/${question.id}`);
+			setShowModal(false);
+			history.push(`/questions/${id}`);
 		}
 	};
 
@@ -77,4 +80,4 @@ const UpdateQuestionPage = () => {
 	return null;
 };
 
-export default UpdateQuestionPage;
+export default EditQuestionForm;

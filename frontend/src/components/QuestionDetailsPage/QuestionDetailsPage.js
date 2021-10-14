@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneQuestion } from "../../store/questions";
+import EditQuestionFormModal from "../EditQuestionFormModal";
 import "./QuestionDetailsPage.css";
 
 const QuestionDetailsPage = () => {
@@ -22,7 +23,8 @@ const QuestionDetailsPage = () => {
 				<div>
 					{editable && (
 						<div>
-							<button>Edit</button>
+							<EditQuestionFormModal />
+
 							<button>Delete</button>
 						</div>
 					)}
