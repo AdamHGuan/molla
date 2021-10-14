@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneQuestion } from "../../store/questions";
+import "./QuestionDetailsPage.css";
 
 const QuestionDetailsPage = () => {
 	const { id } = useParams();
@@ -16,7 +17,7 @@ const QuestionDetailsPage = () => {
 
 	if (question) {
 		return (
-			<div>
+			<div className="questionContainer">
 				<p>{question.title}</p>
 				<div>
 					{editable && (

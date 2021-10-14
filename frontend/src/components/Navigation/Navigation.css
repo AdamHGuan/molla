@@ -1,8 +1,9 @@
 .navbar {
-	height: 30px;
+	height: 25px;
 	width: 100%vh;
-
+	font-size: large;
 	display: flex;
+	justify-content: space-between;
 
 	background-color: lightsalmon;
 }

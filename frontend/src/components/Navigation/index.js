@@ -29,14 +29,17 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className="navbar">
-			<NavLink exact to="/">
-				Home
-			</NavLink>
-			<NavLink exact to="/questions">
-				Questions
-			</NavLink>
-
-			{isLoaded && sessionLinks}
+			<div className="navLeft">
+				<NavLink exact to="/">
+					Home
+				</NavLink>
+			</div>
+			<div className="navCenter">
+				<NavLink exact to="/questions">
+					Questions
+				</NavLink>
+			</div>
+			<div className="navRight">{isLoaded && sessionLinks}</div>
 		</div>
 	);
 }
