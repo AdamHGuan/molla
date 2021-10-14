@@ -35,7 +35,7 @@ router.get(
 	asyncHandler(async (req, res, next) => {
 		const questionId = req.params.id;
 		const question = await Question.findByPk(questionId);
-		question ? res.json({ question }) : questionNotFoundError(questionId, next);
+		question ? res.json(question) : questionNotFoundError(questionId, next);
 	})
 );
 
@@ -45,9 +45,6 @@ const questionValidators = [
 		.withMessage("Please provide a title")
 		.isLength({ max: 255 })
 		.withMessage("title must not be more than 255 characters long"),
-	check("description")
-		.exists({ checkFalsy: true })
-		.withMessage("Please provide a description"),
 ];
 
 // Post question
@@ -58,11 +55,10 @@ router.post(
 	questionValidators,
 	handleValidationErrors,
 	asyncHandler(async (req, res, next) => {
-		const { ownerId, title, description } = req.body;
+		const { ownerId, title } = req.body;
 		const question = await Question.create({
 			ownerId,
 			title,
-			description,
 		});
 		return res.json(question);
 	})
@@ -77,11 +73,11 @@ router.put(
 	handleValidationErrors,
 	asyncHandler(async function (req, res, next) {
 		const questionId = req.params.id;
-		const { title, description } = req.body;
+		const { title } = req.body;
 		const question = await Question.findByPk(questionId);
 
 		if (question) {
-			await question.update({ title, description });
+			await question.update({ title });
 			return res.json(question);
 		} else {
 			questionNotFoundError(questionId, next);
@@ -98,9 +94,12 @@ router.delete(
 		const questionId = req.params.id;
 		const question = await Question.findByPk(questionId);
 
-		question
-			? (await question.destroy()) && res.status(204).end()
-			: questionNotFoundError(questionId, next);
+		if (question) {
+			await question.destroy();
+			return res.json(questionId);
+		}
+		// 		? (await question.destroy()) && res.status(204) && res.json(questionId)
+		// 		: questionNotFoundError(questionId, next);
 	})
 );
 

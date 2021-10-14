@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			ownerId: { allowNull: false, type: DataTypes.INTEGER },
 			title: { allowNull: false, type: DataTypes.STRING(255) },
-			description: { allowNull: false, type: DataTypes.TEXT },
 		},
 		{}
 	);
