@@ -7,7 +7,6 @@ const EditQuestionForm = ({ setShowModal }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const ownerId = useSelector((state) => state.session.user.id);
 	const question = useSelector((state) => state.questions[id]);
 
 	const [title, setTitle] = useState("");

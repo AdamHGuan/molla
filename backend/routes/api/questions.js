@@ -95,9 +95,7 @@ router.delete(
 		const question = await Question.findByPk(questionId);
 
 		question
-			? (await question.destroy()) &&
-			  res.status(204).end() &&
-			  res.json(questionId)
+			? (await question.destroy()) && res.status(204) && res.json(questionId)
 			: questionNotFoundError(questionId, next);
 	})
 );

@@ -1,0 +1,42 @@
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { removeQuestion } from "../../store/questions";
+
+const DeleteQuestionForm = ({ setShowModal }) => {
+	const { id } = useParams();
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const question = useSelector((state) => state.questions[id]);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const question = await dispatch(removeQuestion(id));
+
+		if (!question) {
+			setShowModal(false);
+			history.push(`/questions`);
+		}
+	};
+
+	if (question) {
+		return (
+			<div>
+				<h2>Delete question?</h2>
+				<div>
+					<p>
+						Are you sure you would like to delete this question? This action
+						can't be undone.
+					</p>
+				</div>
+
+				<form onSubmit={handleSubmit}>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+		);
+	}
+	return null;
+};
+
+export default DeleteQuestionForm;

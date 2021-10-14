@@ -87,8 +87,8 @@ export const updateQuestion = (data) => async (dispatch) => {
 	}
 };
 
-export const deleteItem = (id) => async (dispatch) => {
-	const response = await csrfFetch(`/api/items/${id}`, {
+export const removeQuestion = (id) => async (dispatch) => {
+	const response = await csrfFetch(`/api/questions/${id}`, {
 		method: "delete",
 	});
 
