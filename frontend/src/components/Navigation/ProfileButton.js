@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
 	const dispatch = useDispatch();
+	const userId = useSelector((state) => state.session.user.id);
 	const [showMenu, setShowMenu] = useState(false);
 
 	const openMenu = () => {
@@ -26,6 +29,10 @@ function ProfileButton({ user }) {
 	const logout = (e) => {
 		e.preventDefault();
 		dispatch(sessionActions.logout());
+
+		if (!userId) {
+			return <Redirect to="/questions" />;
+		}
 	};
 
 	return (

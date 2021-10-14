@@ -11,7 +11,7 @@ const QuestionDetailsPage = () => {
 	const dispatch = useDispatch();
 	const question = useSelector((state) => state.questions[id]);
 	const user = useSelector((state) => state.session.user);
-	const editable = user.id === question?.ownerId;
+	const editable = user?.id === question?.ownerId;
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));

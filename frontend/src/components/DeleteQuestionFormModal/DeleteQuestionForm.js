@@ -14,7 +14,6 @@ const DeleteQuestionForm = ({ setShowModal }) => {
 		const questionId = await dispatch(removeQuestion(id));
 
 		if (questionId) {
-			setShowModal(false);
 			history.push(`/questions`);
 		}
 	};
