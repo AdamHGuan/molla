@@ -19,13 +19,11 @@ const QuestionsContainer = () => {
 			<div className="questionsLeftContainer"></div>
 			<div className="questionsCenterContainer">
 				{questions.map((question) => (
-					<>
-						<Link key={question.id} to={`/questions/${question.id}`}>
-							<div className="questionsLinks">
-								<p> {question.title} </p>
-							</div>
-						</Link>
-					</>
+					<Link key={question.id} to={`/questions/${question.id}`}>
+						<div className="questionsLinks">
+							<p> {question.title} </p>
+						</div>
+					</Link>
 				))}
 			</div>
 			<div className="questionsLeftContainer"></div>
