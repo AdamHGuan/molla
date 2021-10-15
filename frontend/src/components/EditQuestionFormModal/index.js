@@ -7,7 +7,9 @@ function EditQuestionFormModal() {
 
 	return (
 		<>
-			<button onClick={() => setShowModal(true)}>Edit Question</button>
+			<button onClick={() => setShowModal(true)} className="btn">
+				Edit Question
+			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
 					<EditQuestionForm setShowModal={setShowModal} />

@@ -1,10 +1,14 @@
 .navbar {
-	height: 25px;
-	width: 99%;
-	font-size: large;
-	display: flex;
-	justify-content: space-between;
 	position: fixed;
+	margin-top: 0%;
+	height: 5vh;
+	width: 98vw;
+	display: flex;
+	text-align: center;
+	justify-content: space-evenly;
+	box-shadow: #b54e73 0px 50px 100px -20px, #b54e73 0px 30px 60px -30px,
+		#b54e73 0px -2px 6px 0px inset;
+	background-color: #f08c63;
 
-	background-color: lightsalmon;
+	clear: both;
 }
