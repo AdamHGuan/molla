@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createQuestion } from "../../store/questions";
+import "./CreateQuestionForm.css";
 
 const CreateQuestionForm = ({ setShowModal }) => {
 	const dispatch = useDispatch();
@@ -45,8 +46,9 @@ const CreateQuestionForm = ({ setShowModal }) => {
 	};
 
 	return (
-		<div>
+		<div className="CreateQuestionForm">
 			<h2>New Question</h2>
+
 			{validationErrors.length > 0 && (
 				<div>
 					The following errors were found:
@@ -58,7 +60,7 @@ const CreateQuestionForm = ({ setShowModal }) => {
 				</div>
 			)}
 			<form onSubmit={handleSubmit}>
-				<div>
+				<div className="titleInput">
 					<label htmlFor="title">Title:</label>
 					<input
 						id="title"
