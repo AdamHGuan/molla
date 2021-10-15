@@ -26,7 +26,7 @@ const QuestionDetailsPage = () => {
 
 	if (question) {
 		return (
-			<>
+			<div className="questionPageContainer">
 				<div className="questionContainer">
 					<p>{question.title}</p>
 					<div>
@@ -51,7 +51,7 @@ const QuestionDetailsPage = () => {
 						))}
 					</ul>
 				</div>
-			</>
+			</div>
 		);
 	}
 	return null;
