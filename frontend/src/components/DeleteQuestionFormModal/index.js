@@ -7,7 +7,9 @@ function DeleteQuestionFormModal() {
 
 	return (
 		<>
-			<button onClick={() => setShowModal(true)}>Delete Question</button>
+			<button onClick={() => setShowModal(true)} className="btn">
+				Delete Question
+			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
 					<DeleteQuestionForm setShowModal={setShowModal} />

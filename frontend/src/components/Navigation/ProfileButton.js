@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import * as sessionActions from "../../store/session";
+import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
 	const dispatch = useDispatch();
@@ -37,15 +38,17 @@ function ProfileButton({ user }) {
 
 	return (
 		<>
-			<button onClick={openMenu}>
+			<button onClick={openMenu} className="btn">
 				<i className="fas fa-user-circle" />
 			</button>
 			{showMenu && (
-				<ul className="profile-dropdown">
+				<ul className="profile-dropdown no_bullets">
 					<li>{user.username}</li>
 					<li>{user.email}</li>
 					<li>
-						<button onClick={logout}>Log Out</button>
+						<button onClick={logout} className="btn">
+							Log Out
+						</button>
 					</li>
 				</ul>
 			)}

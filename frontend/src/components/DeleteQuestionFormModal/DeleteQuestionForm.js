@@ -30,7 +30,9 @@ const DeleteQuestionForm = ({ setShowModal }) => {
 				</div>
 
 				<form onSubmit={handleSubmit}>
-					<button type="submit">Submit</button>
+					<button type="submit" className="btn">
+						Submit
+					</button>
 				</form>
 			</div>
 		);
