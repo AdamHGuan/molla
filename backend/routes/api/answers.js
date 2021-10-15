@@ -18,10 +18,10 @@ router.put(
 			});
 			res.json(updateAnswer);
 			res.redirect("/");
-		} else if (req.user.id !== updateAnswer.ownerId) {
-			next(new Error("You are not authorized to edit this answer."));
-		} else {
-			next(new Error("Cannot find question"));
+		} else if (!updateAnswer) {
+			next(new Error("Answer does not exist"));
+		} else if (ownerId !== answer.ownerId) {
+			next(new Error("Unauthorized to delete this answer"));
 		}
 	})
 );
@@ -39,9 +39,9 @@ router.delete(
 
 			return res.json(answerId);
 		} else if (!answer) {
-			next(new Error("Cannot find answer"));
+			next(new Error("Answer does not exist"));
 		} else if (ownerId !== answer.ownerId) {
-			next(new Error("You are not authorized to delete this answer"));
+			next(new Error("Unauthorized to delete this answer"));
 		}
 	})
 );

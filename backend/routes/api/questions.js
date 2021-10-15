@@ -47,6 +47,12 @@ const questionValidators = [
 		.withMessage("title must not be more than 255 characters long"),
 ];
 
+const answerValidators = [
+	check("answer")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide an answer"),
+];
+
 // Post question
 
 router.post(
@@ -119,6 +125,8 @@ router.get(
 router.post(
 	"/:id(\\d+)/answers",
 	requireAuth,
+	answerValidators,
+	handleValidationErrors,
 	asyncHandler(async (req, res, next) => {
 		const { answer } = req.body;
 		const newAnswer = await Answer.create({
