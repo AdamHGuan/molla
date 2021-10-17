@@ -20,18 +20,3 @@
 	box-shadow: 3px 3px 3px 3px rgb(255 0 0 / 60%);
 	width: 80%;
 }
-
-.answerContainer {
-	text-decoration: none;
-	font-family: "Roboto", sans-serif;
-	position: relative;
-	padding-top: 20px;
-	text-align: justify;
-	margin: 40px 10% 20px;
-	padding-left: 20px;
-	padding-bottom: 10px;
-	border: thick double orange;
-	background-color: #ffb6c1;
-	box-shadow: 3px 3px 3px 3px rgb(255 0 0 / 60%);
-	width: 80%;
-}

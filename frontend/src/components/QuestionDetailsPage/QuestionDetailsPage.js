@@ -68,7 +68,7 @@ const QuestionDetailsPage = () => {
 							<CreateAnswerFormModal />
 						</div>
 					</div>
-					{content}
+					<div className="answerContainer">{content}</div>
 				</div>
 			</>
 		);
