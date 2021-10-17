@@ -1,5 +1,5 @@
 const express = require("express");
-const { Question, Answer } = require("../../db/models");
+const { Question } = require("../../db/models");
 
 const asyncHandler = require("express-async-handler");
 
@@ -100,33 +100,6 @@ router.delete(
 		}
 		// 		? (await question.destroy()) && res.status(204) && res.json(questionId)
 		// 		: questionNotFoundError(questionId, next);
-	})
-);
-
-// Answer
-
-router.get(
-	"/:id(\\d+)/answers",
-	asyncHandler(async (req, res, next) => {
-		const answers = await Answer.findAll({
-			where: { questionId: req.params.id },
-		});
-
-		return res.json(answers);
-	})
-);
-
-router.post(
-	"/:id(\\d+)/answers",
-	requireAuth,
-	asyncHandler(async (req, res, next) => {
-		const { answer } = req.body;
-		const newAnswer = await Answer.create({
-			ownerId: req.user.id,
-			questionId: req.params.id,
-			answer,
-		});
-		res.json(newAnswer);
 	})
 );
 
