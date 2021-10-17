@@ -19,19 +19,21 @@ const QuestionDetailsPage = () => {
 
 	if (question) {
 		return (
-			<div className="questionContainer">
-				<p>{question.title}</p>
-				<div>
-					{editable && (
-						<>
-							<div>
-								<EditQuestionFormModal />
-							</div>
-							<div>
-								<DeleteQuestionFormModal />
-							</div>
-						</>
-					)}
+			<div className="questionPageContainer">
+				<div className="questionContainer">
+					<p>{question.title}</p>
+					<div>
+						{editable && (
+							<>
+								<div>
+									<EditQuestionFormModal />
+								</div>
+								<div>
+									<DeleteQuestionFormModal />
+								</div>
+							</>
+						)}
+					</div>
 				</div>
 			</div>
 		);
