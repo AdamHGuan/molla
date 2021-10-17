@@ -1,91 +1,50 @@
-// const express = require("express");
-// const { Answer } = require("../../db/models");
+const express = require("express");
+const { Answer } = require("../../db/models");
 
-// const asyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
 
-// const { check } = require("express-validator");
-// const { handleValidationErrors } = require("../../utils/validation");
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 
-// const { requireAuth } = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
 
-// const router = express.Router();
+const router = express.Router();
 
-// function answerNotFoundError(questionId, next) {
-// 	const err = new Error(`An answer with ID:${questionId} could not be found.`);
-// 	err.title = "Answer not found";
-// 	err.status = 404;
-// 	next(err);
-// }
+function answerNotFoundError(answerId, next) {
+	const err = new Error(`An answer with ID:${answerId} could not be found.`);
+	err.title = "Answer not found";
+	err.status = 404;
+	next(err);
+}
 
-// // Get answers
-// router.get(
-// 	"/",
-// 	asyncHandler(async (req, res, next) => {
-// 		const questions = await Question.findAll();
+const questionValidators = [
+	check("title")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a title")
+		.isLength({ max: 255 })
+		.withMessage("title must not be more than 255 characters long"),
+];
 
-// 		return res.json({
-// 			questions,
-// 		});
-// 	})
-// );
+// Create answer
 
-// // Get single answer
-// router.get(
-// 	"/:id(\\d+)",
-// 	asyncHandler(async (req, res, next) => {
-// 		const questionId = req.params.id;
-// 		const question = await Question.findByPk(questionId);
-// 		question ? res.json(question) : questionNotFoundError(questionId, next);
-// 	})
-// );
+router.put(
+	"/:id(\\d+)",
+	requireAuth,
+	asyncHandler(async function (req, res, next) {
+		const answerId = req.params.id;
+		const { answer } = req.body;
+		const updateAnswer = await Answer.findByPk(answerId);
 
-// const questionValidators = [
-// 	check("title")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide a title")
-// 		.isLength({ max: 255 })
-// 		.withMessage("title must not be more than 255 characters long"),
-// ];
+		if (updateAnswer) {
+			await updateAnswer.update({ answer });
+			return res.json(updateAnswer);
+		} else {
+			answerNotFoundError(answerId, next);
+		}
+	})
+);
 
-// // Post answer
-
-// router.post(
-// 	"/",
-// 	requireAuth,
-// 	questionValidators,
-// 	handleValidationErrors,
-// 	asyncHandler(async (req, res, next) => {
-// 		const { ownerId, title } = req.body;
-// 		const question = await Question.create({
-// 			ownerId,
-// 			title,
-// 		});
-// 		return res.json(question);
-// 	})
-// );
-
-// // Put answer
-
-// router.put(
-// 	"/:id(\\d+)",
-// 	requireAuth,
-// 	questionValidators,
-// 	handleValidationErrors,
-// 	asyncHandler(async function (req, res, next) {
-// 		const questionId = req.params.id;
-// 		const { title } = req.body;
-// 		const question = await Question.findByPk(questionId);
-
-// 		if (question) {
-// 			await question.update({ title });
-// 			return res.json(question);
-// 		} else {
-// 			questionNotFoundError(questionId, next);
-// 		}
-// 	})
-// );
-
-// // Delete answer
+// Delete answer
 
 // router.delete(
 // 	"/:id(\\d+)",
@@ -103,4 +62,4 @@
 // 	})
 // );
 
-// module.exports = router;
+module.exports = router;

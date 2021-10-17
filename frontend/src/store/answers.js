@@ -2,9 +2,9 @@ import { csrfFetch } from "./csrf";
 
 export const LOAD_ANSWERS = "answers/LOAD_ANSWERS";
 export const ADD_ANSWER = "answers/ADD_IANSWERS";
+export const UPDATE_ANSWER = "answers/UPDATE_ANSWERS";
 
-// export const REMOVE_ANSWERS = "answers/REMOVE_ANSWERS";
-// export const UPDATE_ANSWERS = "answers/UPDATE_ANSWERS";
+// export const REMOVE_ANSWER = "answers/REMOVE_ANSWERS";
 
 const loadAnswers = (answers, questionId) => ({
 	type: LOAD_ANSWERS,
@@ -17,10 +17,10 @@ const addAnswer = (answer) => ({
 	answer,
 });
 
-// const update = (item) => ({
-//   type: UPDATE_ITEM,
-//   item
-// });
+const editAnswer = (answer) => ({
+	type: UPDATE_ANSWER,
+	answer,
+});
 
 // const remove = (itemId, pokemonId) => ({
 //   type: REMOVE_ITEM,
@@ -53,24 +53,24 @@ export const createAnswer = (data, questionId) => async (dispatch) => {
 	}
 };
 
-// export const updateItem = (data) => async (dispatch) => {
-//   const response = await fetch(`/api/items/${data.id}`, {
-//     method: 'put',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-//   });
+export const updateAnswer = (data) => async (dispatch) => {
+	const response = await csrfFetch(`/api/answers/${data.id}`, {
+		method: "put",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
 
-//   if (response.ok) {
-//     const item = await response.json();
-//     dispatch(update(item));
-//     return item;
-//   }
-// };
+	if (response.ok) {
+		const answer = await response.json();
+		dispatch(editAnswer(answer));
+		return answer;
+	}
+};
 
 // export const deleteItem = (itemId) => async (dispatch) => {
-//   const response = await fetch(`/api/items/${itemId}`, {
+//   const response = await csrfFetch(`/api/items/${itemId}`, {
 //     method: 'delete'
 //   });
 
@@ -98,11 +98,11 @@ const answersReducer = (state = initialState, action) => {
 			answer = action.answer;
 			newState[answer.id] = answer;
 			return newState;
-		// case EDIT_QUESTION:
-		// 	newState = Object.assign({}, state);
-		// 	question = action.question;
-		// 	newState[question.id] = question;
-		// 	return newState;
+		case UPDATE_ANSWER:
+			newState = Object.assign({}, state);
+			answer = action.answer;
+			newState[answer.id] = answer;
+			return newState;
 		// case DELETE_QUESTION:
 		// 	newState = Object.assign({}, state);
 		// 	delete newState[action.questionId];

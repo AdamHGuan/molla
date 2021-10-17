@@ -1,28 +1,28 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { createAnswer } from "../../store/answers";
+import { updateAnswer } from "../../store/answers";
 
-const CreateAnswerForm = ({ setShowModal }) => {
+const EditAnswerForm = ({ setShowModal, i }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
-
-	const ownerId = useSelector((state) => state.session.user.id);
 	const questionId = id;
-	const [answer, setAnswer] = useState("");
+	const selectedAnswer = useSelector((state) => state.answers);
+	console.log(i);
 
+	const [answer, setAnswer] = useState("");
 	// const [validationErrors, setValidationErrors] = useState([]);
 
 	// const validate = () => {
 	// 	const validationErrors = [];
 
-	// 	if (!answer)
+	// 	if (!title)
 	// 		validationErrors.push("Please provide a title for your question");
 
-	// 	if (answer.length > 255) {
+	// 	if (title.length > 255) {
 	// 		validationErrors.push(
-	// 			"Please write a shorter title (you have " + answer.length + " chars)"
+	// 			"Please write a shorter title (you have " + title.length + " chars)"
 	// 		);
 	// 	}
 
@@ -35,14 +35,12 @@ const CreateAnswerForm = ({ setShowModal }) => {
 		// if (errors.length > 0) return setValidationErrors(errors);
 
 		const data = {
-			ownerId,
-			questionId,
 			answer,
 		};
 
-		const newAnswer = await dispatch(createAnswer(data, questionId));
+		const editedAnswer = await dispatch(updateAnswer(data));
 
-		if (newAnswer) {
+		if (editedAnswer) {
 			setShowModal(false);
 			history.push(`/questions/${questionId}`);
 		}
@@ -50,17 +48,17 @@ const CreateAnswerForm = ({ setShowModal }) => {
 
 	return (
 		<div>
-			<h2>Please provide your answer</h2>
+			<h2>Edit Answer</h2>
 			{/* {validationErrors.length > 0 && (
-				<div>
-					The following errors were found:
-					<ul>
-						{validationErrors.map((error) => (
-							<li key={error}>{error}</li>
-						))}
-					</ul>
-				</div>
-			)} */}
+					<div>
+						The following errors were found:
+						<ul>
+							{validationErrors.map((error) => (
+								<li key={error}>{error}</li>
+							))}
+						</ul>
+					</div>
+				)} */}
 			<form onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor="answer">Answer:</label>
@@ -81,4 +79,4 @@ const CreateAnswerForm = ({ setShowModal }) => {
 	);
 };
 
-export default CreateAnswerForm;
+export default EditAnswerForm;
