@@ -1,5 +1,5 @@
 const express = require("express");
-const { Question } = require("../../db/models");
+const { Question, Answer } = require("../../db/models");
 
 const asyncHandler = require("express-async-handler");
 
@@ -98,9 +98,31 @@ router.delete(
 			await question.destroy();
 			return res.json(questionId);
 		}
-		// 		? (await question.destroy()) && res.status(204) && res.json(questionId)
-		// 		: questionNotFoundError(questionId, next);
 	})
 );
+
+// Get answers
+router.get(
+	"/:id(\\d+)/answers",
+	asyncHandler(async function (req, res) {
+		const questionId = req.params.id;
+		const answers = await Answer.findAll({
+			where: {
+				questionId,
+			},
+		});
+		return res.json(answers);
+	})
+);
+
+// Create answer
+//   router.post(
+// 	'/:id/items',
+// 	itemValidations.validateCreate,
+// 	asyncHandler(async function(req, res) {
+// 	  const item = await ItemsRepository.addItem(req.body, req.params.id);
+// 	  return res.json(item);
+// 	})
+//   );
 
 module.exports = router;

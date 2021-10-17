@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getOneQuestion } from "../../store/questions";
 import EditQuestionFormModal from "../EditQuestionFormModal";
 import DeleteQuestionFormModal from "../DeleteQuestionFormModal";
+import QuestionAnswersPage from "../QuestionAnswersPage";
 import "./QuestionDetailsPage.css";
 
 const QuestionDetailsPage = () => {
@@ -19,23 +20,28 @@ const QuestionDetailsPage = () => {
 
 	if (question) {
 		return (
-			<div className="questionPageContainer">
-				<div className="questionContainer">
-					<p>{question.title}</p>
-					<div>
-						{editable && (
-							<>
-								<div>
-									<EditQuestionFormModal />
-								</div>
-								<div>
-									<DeleteQuestionFormModal />
-								</div>
-							</>
-						)}
+			<>
+				<div className="questionPageContainer">
+					<div className="questionContainer">
+						<p>{question.title}</p>
+						<div>
+							{editable && (
+								<>
+									<div>
+										<EditQuestionFormModal />
+									</div>
+									<div>
+										<DeleteQuestionFormModal />
+									</div>
+								</>
+							)}
+						</div>
+					</div>
+					<div className="answerContainer">
+						<QuestionAnswersPage />
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 	return null;
