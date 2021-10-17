@@ -8,6 +8,7 @@ import DeleteQuestionFormModal from "../DeleteQuestionFormModal";
 import QuestionAnswersPage from "../QuestionAnswersPage";
 import CreateAnswerFormModal from "../CreateAnswerFormModal";
 import EditAnswerForm from "../EditAnswerForm";
+import DeleteAnswerForm from "../DeleteAnswerForm/";
 import "./QuestionDetailsPage.css";
 
 const QuestionDetailsPage = () => {
@@ -17,23 +18,37 @@ const QuestionDetailsPage = () => {
 	const user = useSelector((state) => state.session.user);
 
 	const [editAnswerId, setEditAnswerId] = useState(null);
+	const [deleteAnswerId, setDeleteAnswerId] = useState(null);
 
-	const editable = user?.id === question?.ownerId;
+	const editableQuestion = user?.id === question?.ownerId;
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));
 		setEditAnswerId(null);
+		setDeleteAnswerId(null);
 	}, [dispatch, id]);
 
 	let content = null;
 
 	if (editAnswerId) {
 		content = (
-			<EditAnswerForm
-				question={question}
-				answerId={editAnswerId}
-				hideForm={() => setEditAnswerId(null)}
-			/>
+			<>
+				<EditAnswerForm
+					question={question}
+					answerId={editAnswerId}
+					hideForm={() => setEditAnswerId(null)}
+				/>
+			</>
+		);
+	} else if (deleteAnswerId) {
+		content = (
+			<>
+				<DeleteAnswerForm
+					question={question}
+					answerId={deleteAnswerId}
+					hideForm={() => setDeleteAnswerId(null)}
+				/>
+			</>
 		);
 	} else {
 		content = (
@@ -41,6 +56,7 @@ const QuestionDetailsPage = () => {
 				<QuestionAnswersPage
 					question={question}
 					setEditAnswerId={setEditAnswerId}
+					setDeleteAnswerId={setDeleteAnswerId}
 				/>
 			</div>
 		);
@@ -51,9 +67,9 @@ const QuestionDetailsPage = () => {
 			<>
 				<div className="questionPageContainer">
 					<div className="questionContainer">
-						<p>{question.title}</p>
+						<h2>{question.title}</h2>
 						<div>
-							{editable && (
+							{editableQuestion && (
 								<>
 									<div>
 										<EditQuestionFormModal />
@@ -68,7 +84,7 @@ const QuestionDetailsPage = () => {
 							<CreateAnswerFormModal />
 						</div>
 					</div>
-					<div className="answerContainer">{content}</div>
+					<div>{content}</div>
 				</div>
 			</>
 		);

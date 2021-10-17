@@ -4,7 +4,7 @@ export const LOAD_ANSWERS = "answers/LOAD_ANSWERS";
 export const ADD_ANSWER = "answers/ADD_IANSWERS";
 export const UPDATE_ANSWER = "answers/UPDATE_ANSWERS";
 
-// export const REMOVE_ANSWER = "answers/REMOVE_ANSWERS";
+export const REMOVE_ANSWER = "answers/REMOVE_ANSWERS";
 
 const loadAnswers = (answers, questionId) => ({
 	type: LOAD_ANSWERS,
@@ -22,11 +22,11 @@ const editAnswer = (answer) => ({
 	answer,
 });
 
-// const remove = (itemId, pokemonId) => ({
-//   type: REMOVE_ITEM,
-//   itemId,
-//   pokemonId
-// });
+const removeAnswer = (itemId, pokemonId) => ({
+	type: REMOVE_ANSWER,
+	itemId,
+	pokemonId,
+});
 
 export const getAnswers = (questionId) => async (dispatch) => {
 	const response = await csrfFetch(`/api/questions/${questionId}/answers`);
@@ -69,16 +69,16 @@ export const updateAnswer = (data) => async (dispatch) => {
 	}
 };
 
-// export const deleteItem = (itemId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/items/${itemId}`, {
-//     method: 'delete'
-//   });
+export const deleteAnswer = (answerId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/answers/${answerId}`, {
+		method: "delete",
+	});
 
-//   if (response.ok) {
-//     const item = await response.json();
-//     dispatch(remove(item.id, item.pokemonId));
-//   }
-// };
+	if (response.ok) {
+		const answer = await response.json();
+		dispatch(removeAnswer(answer.id, answer.pokemonId));
+	}
+};
 
 const initialState = {};
 
@@ -103,10 +103,10 @@ const answersReducer = (state = initialState, action) => {
 			answer = action.answer;
 			newState[answer.id] = answer;
 			return newState;
-		// case DELETE_QUESTION:
-		// 	newState = Object.assign({}, state);
-		// 	delete newState[action.questionId];
-		// 	return newState;
+		case REMOVE_ANSWER:
+			newState = Object.assign({}, state);
+			delete newState[action.answerId];
+			return newState;
 		default:
 			return state;
 	}

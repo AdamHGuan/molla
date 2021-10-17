@@ -46,20 +46,20 @@ router.put(
 
 // Delete answer
 
-// router.delete(
-// 	"/:id(\\d+)",
-// 	requireAuth,
-// 	asyncHandler(async function (req, res, next) {
-// 		const questionId = req.params.id;
-// 		const question = await Question.findByPk(questionId);
+router.delete(
+	"/:id(\\d+)",
+	requireAuth,
+	asyncHandler(async function (req, res, next) {
+		const answerId = req.params.id;
+		const answerToDelete = await Answer.findByPk(answerId);
 
-// 		if (question) {
-// 			await question.destroy();
-// 			return res.json(questionId);
-// 		}
-// 		// 		? (await question.destroy()) && res.status(204) && res.json(questionId)
-// 		// 		: questionNotFoundError(questionId, next);
-// 	})
-// );
+		if (answerToDelete) {
+			await answerToDelete.destroy();
+			return res.json(answerId);
+		} else {
+			answerNotFoundError(answerId, next);
+		}
+	})
+);
 
 module.exports = router;
