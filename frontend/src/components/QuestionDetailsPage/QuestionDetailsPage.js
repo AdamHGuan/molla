@@ -5,6 +5,7 @@ import { getOneQuestion } from "../../store/questions";
 import EditQuestionFormModal from "../EditQuestionFormModal";
 import DeleteQuestionFormModal from "../DeleteQuestionFormModal";
 import QuestionAnswersPage from "../QuestionAnswersPage";
+import CreateAnswerFormModal from "../CreateAnswerFormModal";
 import "./QuestionDetailsPage.css";
 
 const QuestionDetailsPage = () => {
@@ -32,6 +33,9 @@ const QuestionDetailsPage = () => {
 									</div>
 									<div>
 										<DeleteQuestionFormModal />
+									</div>
+									<div>
+										<CreateAnswerFormModal />
 									</div>
 								</>
 							)}

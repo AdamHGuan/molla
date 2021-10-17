@@ -104,7 +104,7 @@ router.delete(
 // Get answers
 router.get(
 	"/:id(\\d+)/answers",
-	asyncHandler(async function (req, res) {
+	asyncHandler(async function (req, res, next) {
 		const questionId = req.params.id;
 		const answers = await Answer.findAll({
 			where: {
@@ -116,13 +116,22 @@ router.get(
 );
 
 // Create answer
-//   router.post(
-// 	'/:id/items',
-// 	itemValidations.validateCreate,
-// 	asyncHandler(async function(req, res) {
-// 	  const item = await ItemsRepository.addItem(req.body, req.params.id);
-// 	  return res.json(item);
-// 	})
-//   );
+router.post(
+	"/:id(\\d+)/answers",
+	requireAuth,
+	asyncHandler(async function (req, res, next) {
+		const ownerId = req.user.id;
+		const questionId = req.params.id;
+		const { answer } = req.body;
+
+		const newAnswer = await Answer.create({
+			ownerId,
+			questionId,
+			answer,
+		});
+
+		return res.json(newAnswer);
+	})
+);
 
 module.exports = router;

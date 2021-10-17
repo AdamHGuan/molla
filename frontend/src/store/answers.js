@@ -1,9 +1,10 @@
 import { csrfFetch } from "./csrf";
 
 export const LOAD_ANSWERS = "answers/LOAD_ANSWERS";
+export const ADD_ANSWER = "answers/ADD_IANSWERS";
+
 // export const REMOVE_ANSWERS = "answers/REMOVE_ANSWERS";
 // export const UPDATE_ANSWERS = "answers/UPDATE_ANSWERS";
-// export const ADD_ANSWERS = "answers/ADD_IANSWERS";
 
 const loadAnswers = (answers, questionId) => ({
 	type: LOAD_ANSWERS,
@@ -11,13 +12,13 @@ const loadAnswers = (answers, questionId) => ({
 	questionId,
 });
 
+const addAnswer = (answer) => ({
+	type: ADD_ANSWER,
+	answer,
+});
+
 // const update = (item) => ({
 //   type: UPDATE_ITEM,
-//   item
-// });
-
-// const add = (item) => ({
-//   type: ADD_ITEM,
 //   item
 // });
 
@@ -36,21 +37,21 @@ export const getAnswers = (questionId) => async (dispatch) => {
 	}
 };
 
-// export const createItem = (data, pokemonId) => async (dispatch) => {
-//   const response = await fetch(`/api/pokemon/${pokemonId}/items`, {
-//     method: 'post',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-//   });
+export const createAnswer = (data, questionId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/questions/${questionId}/answers`, {
+		method: "post",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
 
-//   if (response.ok) {
-//     const item = await response.json();
-//     dispatch(add(item));
-//     return item;
-//   }
-// };
+	if (response.ok) {
+		const answer = await response.json();
+		dispatch(addAnswer(answer));
+		return answer;
+	}
+};
 
 // export const updateItem = (data) => async (dispatch) => {
 //   const response = await fetch(`/api/items/${data.id}`, {
@@ -81,30 +82,31 @@ export const getAnswers = (questionId) => async (dispatch) => {
 
 const initialState = {};
 
-const answersReducer = (state = initialState, action) => {
-	// let newState;
-	// let answer;
+let newState;
+let answer;
 
+const answersReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case LOAD_ANSWERS: {
-			const newAnswers = Object.assign({}, state);
+		case LOAD_ANSWERS:
+			newState = {};
 			action.answers.forEach((answer) => {
-				newAnswers[answer.id] = answer;
+				newState[answer.id] = answer;
 			});
-			return newAnswers;
-		}
-		// 	case REMOVE_ITEM: {
-		// 		const newState = { ...state };
-		// 		delete newState[action.itemId];
-		// 		return newState;
-		// 	}
-		// 	case ADD_ITEM:
-		// 	case UPDATE_ITEM: {
-		// 		return {
-		// 			...state,
-		// 			[action.item.id]: action.item,
-		// 		};
-		// 	}
+			return newState;
+		case ADD_ANSWER:
+			newState = Object.assign({}, state);
+			answer = action.answer;
+			newState[answer.id] = answer;
+			return newState;
+		// case EDIT_QUESTION:
+		// 	newState = Object.assign({}, state);
+		// 	question = action.question;
+		// 	newState[question.id] = question;
+		// 	return newState;
+		// case DELETE_QUESTION:
+		// 	newState = Object.assign({}, state);
+		// 	delete newState[action.questionId];
+		// 	return newState;
 		default:
 			return state;
 	}
