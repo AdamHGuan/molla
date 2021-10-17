@@ -5,7 +5,7 @@ import { getAnswers } from "../../store/answers";
 import EditAnswerFormModal from "../EditAnswerFormModal";
 import "./QuestionAnswersPage";
 
-const QuestionAnswersPage = (setAnswerId, answerId) => {
+const QuestionAnswersPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const answers = useSelector((state) => Object.values(state.answers));
@@ -14,7 +14,6 @@ const QuestionAnswersPage = (setAnswerId, answerId) => {
 
 	useEffect(() => {
 		dispatch(getAnswers(id));
-		setAnswerId(null);
 	}, [dispatch, id]);
 
 	return (
@@ -26,10 +25,7 @@ const QuestionAnswersPage = (setAnswerId, answerId) => {
 						<p> {answer.id} </p>
 					</div>
 					<div>
-						<EditAnswerFormModal
-							answerId={answerId}
-							setAnswerId={setAnswerId}
-						/>
+						<EditAnswerFormModal />
 					</div>
 				</div>
 			))}

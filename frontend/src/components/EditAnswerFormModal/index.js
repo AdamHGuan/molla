@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import EditAnswerForm from "./EditAnswerForm";
 
-function EditAnswerFormModal({ answer, setAnswerId }) {
+function EditAnswerFormModal() {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<>
-			<button
-				onClick={(() => setShowModal(true), setAnswerId(answer.id))}
-				className="btn"
-			>
+			<button onClick={() => setShowModal(true)} className="btn">
 				Edit Answer
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-					<EditAnswerForm setShowModal={setShowModal} answer={answer} />
+					<EditAnswerForm setShowModal={setShowModal} />
 				</Modal>
 			)}
 		</>

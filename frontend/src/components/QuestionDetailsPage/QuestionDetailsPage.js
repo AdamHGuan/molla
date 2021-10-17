@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneQuestion } from "../../store/questions";
@@ -14,7 +14,6 @@ const QuestionDetailsPage = () => {
 	const question = useSelector((state) => state.questions[id]);
 	const user = useSelector((state) => state.session.user);
 	const editable = user?.id === question?.ownerId;
-	const [answerId, setAnswerId] = useState(null);
 
 	useEffect(() => {
 		dispatch(getOneQuestion(id));
@@ -43,10 +42,7 @@ const QuestionDetailsPage = () => {
 						</div>
 					</div>
 					<div className="answerContainer">
-						<QuestionAnswersPage
-							setAnswerId={setAnswerId}
-							answerId={answerId}
-						/>
+						<QuestionAnswersPage />
 					</div>
 				</div>
 			</>

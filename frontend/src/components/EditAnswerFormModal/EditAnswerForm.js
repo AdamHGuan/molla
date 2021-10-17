@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateAnswer } from "../../store/answers";
 
-const EditAnswerForm = ({ setShowModal, answers, answerId }) => {
+const EditAnswerForm = ({ setShowModal, i }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const questionId = id;
-	// const selectedAnswer =  useSelector((state) => state.answers);
-	console.log(answerId);
+	const selectedAnswer = useSelector((state) => state.answers);
+	console.log(i);
 
 	const [answer, setAnswer] = useState("");
 	// const [validationErrors, setValidationErrors] = useState([]);
