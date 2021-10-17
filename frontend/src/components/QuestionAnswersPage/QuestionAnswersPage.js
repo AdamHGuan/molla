@@ -1,31 +1,29 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { getAnswers } from "../../store/answers";
-import EditAnswerFormModal from "../EditAnswerFormModal";
-import "./QuestionAnswersPage";
+import "./QuestionAnswersPage.css";
 
-const QuestionAnswersPage = () => {
-	const { id } = useParams();
-	const dispatch = useDispatch();
+const QuestionAnswersPage = ({ question, setEditAnswerId }) => {
 	const answers = useSelector((state) => Object.values(state.answers));
+
+	const dispatch = useDispatch();
+	// const answers = useSelector((state) => Object.values(state.answers));
 
 	// const editable = user?.id === answers.answer?.ownerId;
 
 	useEffect(() => {
-		dispatch(getAnswers(id));
-	}, [dispatch, id]);
+		dispatch(getAnswers(question.id));
+	}, [dispatch, question.id]);
 
 	return (
-		<div className="answersContainer">
+		<div className="answersPageContainer">
 			{answers.map((answer) => (
-				<div key={answer.id}>
-					<div className="answerDiv">
-						<p> {answer.answer} </p>
-						<p> {answer.id} </p>
-					</div>
+				<div key={answer.id} className="answerContainer">
+					<div>{answer.answer}</div>
 					<div>
-						<EditAnswerFormModal />
+						<button onClick={() => setEditAnswerId(answer.id)} className="btn">
+							Edit
+						</button>
 					</div>
 				</div>
 			))}
@@ -34,7 +32,3 @@ const QuestionAnswersPage = () => {
 };
 
 export default QuestionAnswersPage;
-
-// <div>
-//     <DeleteAnswerModal />
-// </div>

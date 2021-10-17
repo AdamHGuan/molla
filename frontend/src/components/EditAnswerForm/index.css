@@ -1,12 +1,4 @@
-.answersPageContainer {
-	display: flex;
-	width: 100vw;
-	height: 100vh;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.answerContainer {
+.editAnswerForm {
 	text-decoration: none;
 	font-family: "Roboto", sans-serif;
 	position: relative;
