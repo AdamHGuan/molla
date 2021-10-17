@@ -19,32 +19,6 @@ const QuestionDetailsPage = () => {
 
 	if (question) {
 		return (
-<<<<<<< HEAD
-			<div className="questionPageContainer">
-				<div className="questionContainer">
-					<p>{question.title}</p>
-					<div>
-						{editable && (
-							<>
-								<div>
-									<EditQuestionFormModal />
-								</div>
-								<div>
-									<DeleteQuestionFormModal />
-								</div>
-							</>
-						)}
-					</div>
-				</div>
-				<div className="answerContainer">
-					<ul>
-						{Object.keys(answers).map((key) => (
-							<li key={answers[key].id}>
-								<div>{answers[key].answer}</div>
-							</li>
-						))}
-					</ul>
-=======
 			<div className="questionContainer">
 				<p>{question.title}</p>
 				<div>
@@ -58,7 +32,6 @@ const QuestionDetailsPage = () => {
 							</div>
 						</>
 					)}
->>>>>>> parent of d415158 (Working on Answer MVP)
 				</div>
 			</div>
 		);
