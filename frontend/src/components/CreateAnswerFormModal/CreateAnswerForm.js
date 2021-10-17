@@ -51,7 +51,7 @@ const CreateAnswerForm = ({ setShowModal }) => {
 
 	return (
 		<div>
-			<h2>New Answer</h2>
+			<h2>Please provide your answer</h2>
 			{/* {validationErrors.length > 0 && (
 				<div>
 					The following errors were found:

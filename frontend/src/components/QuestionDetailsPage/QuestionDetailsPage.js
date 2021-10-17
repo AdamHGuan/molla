@@ -34,11 +34,11 @@ const QuestionDetailsPage = () => {
 									<div>
 										<DeleteQuestionFormModal />
 									</div>
-									<div>
-										<CreateAnswerFormModal />
-									</div>
 								</>
 							)}
+						</div>
+						<div>
+							<CreateAnswerFormModal />
 						</div>
 					</div>
 					<div className="answerContainer">

@@ -8,7 +8,7 @@ function CreateAnswerFormModal() {
 	return (
 		<>
 			<button onClick={() => setShowModal(true)} className="btn">
-				Create Answer
+				Answer this question
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
