@@ -9,7 +9,6 @@
 .questionContainer {
 	/* text-decoration: none;
 	font-family: "Roboto", sans-serif;
-<<<<<<< HEAD
 	position: static;
 	padding-top: 60px;
 	margin-left: 10%;
@@ -40,9 +39,6 @@
 	text-decoration: none;
 	font-family: "Roboto", sans-serif;
 	position: relative;
-=======
-	position: fixed;
->>>>>>> parent of d415158 (Working on Answer MVP)
 	padding-top: 20px;
 	text-align: justify;
 	margin: 40px 10% 20px;
