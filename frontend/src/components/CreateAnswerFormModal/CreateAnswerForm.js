@@ -48,6 +48,11 @@ const CreateAnswerForm = ({ setShowModal }) => {
 		}
 	};
 
+	const handleCancelClick = (e) => {
+		e.preventDefault();
+		setShowModal(false);
+	};
+
 	return (
 		<div>
 			<h2>Please provide your answer</h2>
@@ -75,6 +80,9 @@ const CreateAnswerForm = ({ setShowModal }) => {
 
 				<button type="submit" className="btn">
 					Submit
+				</button>
+				<button type="button" onClick={handleCancelClick} className="btn">
+					Cancel
 				</button>
 			</form>
 		</div>

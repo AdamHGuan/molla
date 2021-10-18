@@ -18,6 +18,11 @@ const DeleteQuestionForm = ({ setShowModal }) => {
 		}
 	};
 
+	const handleCancelClick = (e) => {
+		e.preventDefault();
+		setShowModal(false);
+	};
+
 	if (question) {
 		return (
 			<div>
@@ -32,6 +37,10 @@ const DeleteQuestionForm = ({ setShowModal }) => {
 				<form onSubmit={handleSubmit}>
 					<button type="submit" className="btn">
 						Submit
+					</button>
+
+					<button type="button" onClick={handleCancelClick} className="btn">
+						Cancel
 					</button>
 				</form>
 			</div>
