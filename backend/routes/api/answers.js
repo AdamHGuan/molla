@@ -10,34 +10,12 @@ const { requireAuth } = require("../../utils/auth");
 
 const router = express.Router();
 
-function answerNotFoundError(questionId, next) {
-	const err = new Error(`An answer with ID:${questionId} could not be found.`);
+function answerNotFoundError(answerId, next) {
+	const err = new Error(`An answer with ID:${answerId} could not be found.`);
 	err.title = "Answer not found";
 	err.status = 404;
 	next(err);
 }
-
-// Get answers
-router.get(
-	"/",
-	asyncHandler(async (req, res, next) => {
-		const questions = await Question.findAll();
-
-		return res.json({
-			questions,
-		});
-	})
-);
-
-// Get single answer
-router.get(
-	"/:id(\\d+)",
-	asyncHandler(async (req, res, next) => {
-		const questionId = req.params.id;
-		const question = await Question.findByPk(questionId);
-		question ? res.json(question) : questionNotFoundError(questionId, next);
-	})
-);
 
 const questionValidators = [
 	check("title")
@@ -47,40 +25,21 @@ const questionValidators = [
 		.withMessage("title must not be more than 255 characters long"),
 ];
 
-// Post answer
-
-router.post(
-	"/",
-	requireAuth,
-	questionValidators,
-	handleValidationErrors,
-	asyncHandler(async (req, res, next) => {
-		const { ownerId, title } = req.body;
-		const question = await Question.create({
-			ownerId,
-			title,
-		});
-		return res.json(question);
-	})
-);
-
-// Put answer
+// Create answer
 
 router.put(
 	"/:id(\\d+)",
 	requireAuth,
-	questionValidators,
-	handleValidationErrors,
 	asyncHandler(async function (req, res, next) {
-		const questionId = req.params.id;
-		const { title } = req.body;
-		const question = await Question.findByPk(questionId);
+		const answerId = req.params.id;
+		const { answer } = req.body;
+		const updateAnswer = await Answer.findByPk(answerId);
 
-		if (question) {
-			await question.update({ title });
-			return res.json(question);
+		if (updateAnswer) {
+			await updateAnswer.update({ answer });
+			return res.json(updateAnswer);
 		} else {
-			questionNotFoundError(questionId, next);
+			answerNotFoundError(answerId, next);
 		}
 	})
 );
@@ -91,15 +50,15 @@ router.delete(
 	"/:id(\\d+)",
 	requireAuth,
 	asyncHandler(async function (req, res, next) {
-		const questionId = req.params.id;
-		const question = await Question.findByPk(questionId);
+		const answerId = req.params.id;
+		const answerToDelete = await Answer.findByPk(answerId);
 
-		if (question) {
-			await question.destroy();
-			return res.json(questionId);
+		if (answerToDelete) {
+			await answerToDelete.destroy();
+			return res.json(answerId);
+		} else {
+			answerNotFoundError(answerId, next);
 		}
-		// 		? (await question.destroy()) && res.status(204) && res.json(questionId)
-		// 		: questionNotFoundError(questionId, next);
 	})
 );
 
