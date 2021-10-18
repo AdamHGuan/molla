@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import QuestionsContainer from "./components/QuestionsContainer";
 import QuestionDetailsPage from "./components/QuestionDetailsPage";
 import HomePage from "./components/HomePage";
+import Footer from "./components/Footer";
 
 function App() {
 	const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
 					</Route>
 				</Switch>
 			)}
+			<Footer />
 		</>
 	);
 }

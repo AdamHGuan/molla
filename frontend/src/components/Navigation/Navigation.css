@@ -1,8 +1,9 @@
 .navbar {
 	position: fixed;
-	margin-top: 0%;
-	height: 5vh;
-	width: 98vw;
+	top: 0;
+
+	height: 4.5%;
+	width: 100%;
 	display: flex;
 	text-align: center;
 	justify-content: space-evenly;

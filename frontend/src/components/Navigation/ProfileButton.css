@@ -1,7 +1,7 @@
 ul.profile-dropdown {
 	list-style-type: none;
 	background-color: #f08c63;
-	position: absolute;
+	position: fixed;
 	font-weight: 800;
 	padding-top: 10px;
 	padding-bottom: 10px;

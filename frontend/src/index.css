@@ -1,12 +1,14 @@
 /* TODO Add site wide styles */
 body {
 	background-image: url(./svg/Molla-background.svg);
+	position: absolute;
+	width: 100%;
+	left: 50%;
+	top: 50%;
+	height: 100%;
+	object-fit: cover;
+	transform: translate(-50%, -50%);
 	z-index: -1;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background-color: #0f0919;
 }
 
 button,
