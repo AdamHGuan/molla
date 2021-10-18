@@ -17,13 +17,13 @@ function answerNotFoundError(answerId, next) {
 	next(err);
 }
 
-const questionValidators = [
-	check("title")
-		.exists({ checkFalsy: true })
-		.withMessage("Please provide a title")
-		.isLength({ max: 255 })
-		.withMessage("title must not be more than 255 characters long"),
-];
+// const answerValidators = [
+// 	check("answer")
+// 		.exists({ checkFalsy: true })
+// 		.withMessage("Please provide an answer")
+// 		.isLength({ max: 255 })
+// 		.withMessage("Answer must not be more than 255 characters long"),
+// ];
 
 // Create answer
 
