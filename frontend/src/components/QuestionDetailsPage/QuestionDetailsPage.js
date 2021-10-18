@@ -80,6 +80,10 @@ const QuestionDetailsPage = () => {
 										<div>
 											<DeleteQuestionFormModal />
 										</div>
+									</div>
+								)}
+								{user && (
+									<div className="btnContainer">
 										<div>
 											<CreateAnswerFormModal />
 										</div>
