@@ -9,7 +9,7 @@ const EditQuestionForm = ({ setShowModal }) => {
 	const history = useHistory();
 	const question = useSelector((state) => state.questions[id]);
 
-	const [title, setTitle] = useState("");
+	const [title, setTitle] = useState(question.title);
 	const [validationErrors, setValidationErrors] = useState([]);
 
 	const validate = () => {
@@ -45,6 +45,11 @@ const EditQuestionForm = ({ setShowModal }) => {
 		}
 	};
 
+	const handleCancelClick = (e) => {
+		e.preventDefault();
+		setShowModal(false);
+	};
+
 	if (question) {
 		return (
 			<div>
@@ -65,14 +70,18 @@ const EditQuestionForm = ({ setShowModal }) => {
 						<input
 							id="title"
 							type="text"
-							onChange={(e) => setTitle(e.target.value)}
+							placeholder="title"
 							value={title}
+							onChange={(e) => setTitle(e.target.value)}
 							required
 						/>
 					</div>
 
 					<button type="submit" className="btn">
 						Submit
+					</button>
+					<button type="button" onClick={handleCancelClick} className="btn">
+						Cancel
 					</button>
 				</form>
 			</div>
