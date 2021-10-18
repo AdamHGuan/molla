@@ -70,20 +70,22 @@ const QuestionDetailsPage = () => {
 				<div className="questionPageContainer">
 					<div className="questionContainer">
 						<h2>{question.title}</h2>
-						<div>
-							{editableQuestion && (
-								<>
-									<div>
-										<EditQuestionFormModal />
+						<div className="btnContainer">
+							<div>
+								{editableQuestion && (
+									<div className="btnContainer">
+										<div>
+											<EditQuestionFormModal />
+										</div>
+										<div>
+											<DeleteQuestionFormModal />
+										</div>
 									</div>
-									<div>
-										<DeleteQuestionFormModal />
-									</div>
-								</>
-							)}
-						</div>
-						<div>
-							<CreateAnswerFormModal />
+								)}
+							</div>
+							<div>
+								<CreateAnswerFormModal />
+							</div>
 						</div>
 					</div>
 					<div>{content}</div>

@@ -20,3 +20,8 @@
 	box-shadow: 3px 3px 3px 3px rgb(255 0 0 / 60%);
 	width: 80%;
 }
+
+.btnContainer {
+	display: flex;
+	flex-direction: row;
+}
