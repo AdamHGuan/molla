@@ -10,6 +10,8 @@ const QuestionAnswersPage = ({
 	setEditAnswerId,
 	setDeleteAnswerId,
 }) => {
+	const user = useSelector((state) => state.session.user);
+
 	const answers = useSelector((state) => Object.values(state.answers));
 
 	const dispatch = useDispatch();
@@ -48,20 +50,27 @@ const QuestionAnswersPage = ({
 							</button>
 						</div>
 					)} */}
-					<div>
-						<button onClick={() => setEditAnswerId(answer.id)} className="btn">
-							Edit
-						</button>
-					</div>
+					{user && user.id === answer.ownerId && (
+						<>
+							<div>
+								<button
+									onClick={() => setEditAnswerId(answer.id)}
+									className="btn"
+								>
+									Edit
+								</button>
+							</div>
 
-					<div>
-						<button
-							onClick={() => setDeleteAnswerId(answer.id)}
-							className="btn"
-						>
-							Delete
-						</button>
-					</div>
+							<div>
+								<button
+									onClick={() => setDeleteAnswerId(answer.id)}
+									className="btn"
+								>
+									Delete
+								</button>
+							</div>
+						</>
+					)}
 				</div>
 			))}
 		</div>

@@ -80,11 +80,11 @@ const QuestionDetailsPage = () => {
 										<div>
 											<DeleteQuestionFormModal />
 										</div>
+										<div>
+											<CreateAnswerFormModal />
+										</div>
 									</div>
 								)}
-							</div>
-							<div>
-								<CreateAnswerFormModal />
 							</div>
 						</div>
 					</div>
