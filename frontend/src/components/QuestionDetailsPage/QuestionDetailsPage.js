@@ -57,6 +57,8 @@ const QuestionDetailsPage = () => {
 					question={question}
 					setEditAnswerId={setEditAnswerId}
 					setDeleteAnswerId={setDeleteAnswerId}
+					editAnswerId={editAnswerId}
+					deleteAnswerId={deleteAnswerId}
 				/>
 			</div>
 		);

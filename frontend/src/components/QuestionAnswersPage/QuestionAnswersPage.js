@@ -5,14 +5,20 @@ import "./QuestionAnswersPage.css";
 
 const QuestionAnswersPage = ({
 	question,
+	editAnswerId,
+	deleteAnswerId,
 	setEditAnswerId,
 	setDeleteAnswerId,
 }) => {
 	const answers = useSelector((state) => Object.values(state.answers));
 
 	const dispatch = useDispatch();
-	// const ownerId = useSelector((state) => state.session.user.id);
+	const user = useSelector((state) => state.session.user.id);
 	// const userAnswers = answers.filter((answer) => answer.ownerId);
+	console.log(setEditAnswerId);
+
+	const editableAnswer = user?.id === answers?.editAnswerId?.ownerId;
+	const deletableAnswer = user?.id === answers?.editAnswerId?.ownerId;
 
 	useEffect(() => {
 		dispatch(getAnswers(question.id));
@@ -23,21 +29,26 @@ const QuestionAnswersPage = ({
 			{answers.map((answer) => (
 				<div key={answer.id} className="answerContainer">
 					<div>{answer.answer}</div>
-					{/* {editableAnswer && ( */}
-					<div>
-						<button onClick={() => setEditAnswerId(answer.id)} className="btn">
-							Edit
-						</button>
-					</div>
-					<div>
-						<button
-							onClick={() => setDeleteAnswerId(answer.id)}
-							className="btn"
-						>
-							Delete
-						</button>
-					</div>
-					{/* )} */}
+					{editableAnswer && (
+						<div>
+							<button
+								onClick={() => setEditAnswerId(answer.id)}
+								className="btn"
+							>
+								Edit
+							</button>
+						</div>
+					)}
+					{deletableAnswer && (
+						<div>
+							<button
+								onClick={() => setDeleteAnswerId(answer.id)}
+								className="btn"
+							>
+								Delete
+							</button>
+						</div>
+					)}
 				</div>
 			))}
 		</div>
