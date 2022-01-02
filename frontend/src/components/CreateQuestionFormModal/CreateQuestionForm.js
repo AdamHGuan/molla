@@ -59,10 +59,13 @@ const CreateQuestionForm = ({ setShowModal }) => {
 			)}
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label htmlFor="title">Title:</label>
-					<input
+					{/* <label htmlFor="title">Title:</label> */}
+					<textarea
 						id="title"
-						type="text"
+						rows="5"
+						cols="33"
+						className="formTextArea"
+						// placeholder="Please enter you answer."
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
 						required

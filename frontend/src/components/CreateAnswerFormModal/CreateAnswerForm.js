@@ -68,10 +68,13 @@ const CreateAnswerForm = ({ setShowModal }) => {
 			)} */}
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label htmlFor="answer">Answer:</label>
-					<input
+					{/* <label htmlFor="answer">Answer:</label> */}
+					<textarea
 						id="answer"
-						type="text"
+						rows="5"
+						cols="33"
+						className="formTextArea"
+						// placeholder="Please enter you answer."
 						onChange={(e) => setAnswer(e.target.value)}
 						value={answer}
 						required
