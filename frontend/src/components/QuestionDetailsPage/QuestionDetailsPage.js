@@ -82,7 +82,7 @@ const QuestionDetailsPage = () => {
 										</div>
 									</div>
 								)}
-								{user && (
+								{!editableQuestion && user && (
 									<div className="btnContainer">
 										<div>
 											<CreateAnswerFormModal />
