@@ -66,11 +66,11 @@ const EditQuestionForm = ({ setShowModal }) => {
 				)}
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label htmlFor="title">Title:</label>
-						<input
+						{/* <label htmlFor="title">Title:</label> */}
+						<textarea
 							id="title"
-							type="text"
-							placeholder="title"
+							rows="7"
+							cols="60"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
 							required

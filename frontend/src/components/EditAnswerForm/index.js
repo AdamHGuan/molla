@@ -34,9 +34,12 @@ const EditAnswerForm = ({ answerId, hideForm }) => {
 		<div className="editAnswerForm">
 			<h2>Edit Answer</h2>
 			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					placeholder="answer"
+				<textarea
+					id="answer"
+					rows="7"
+					cols="60"
+					className="formTextArea"
+					// placeholder="Please enter you answer."
 					value={answer}
 					onChange={updatedAnswer}
 				/>
