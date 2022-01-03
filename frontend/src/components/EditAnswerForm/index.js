@@ -33,7 +33,7 @@ const EditAnswerForm = ({ answerId, hideForm }) => {
 	return (
 		<div className="editAnswerForm">
 			<h2>Edit Answer</h2>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="form-container">
 				<textarea
 					id="answer"
 					rows="7"

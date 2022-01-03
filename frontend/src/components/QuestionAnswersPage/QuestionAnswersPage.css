@@ -15,3 +15,10 @@
 .answer {
 	padding-right: 1rem;
 }
+
+.answerOptionsContainer {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}

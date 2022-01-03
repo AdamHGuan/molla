@@ -45,7 +45,7 @@ const CreateQuestionForm = ({ setShowModal }) => {
 	};
 
 	return (
-		<div>
+		<div className="modal-main">
 			<h2>New Question</h2>
 			{validationErrors.length > 0 && (
 				<div>
@@ -57,7 +57,7 @@ const CreateQuestionForm = ({ setShowModal }) => {
 					</ul>
 				</div>
 			)}
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="form-container">
 				<div>
 					{/* <label htmlFor="title">Title:</label> */}
 					<textarea

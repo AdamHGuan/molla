@@ -51,7 +51,7 @@ const QuestionAnswersPage = ({
 						</div>
 					)} */}
 					{user && user.id === answer.ownerId && (
-						<>
+						<div className="answerOptionsContainer">
 							<div>
 								<button
 									onClick={() => setEditAnswerId(answer.id)}
@@ -69,7 +69,7 @@ const QuestionAnswersPage = ({
 									Delete
 								</button>
 							</div>
-						</>
+						</div>
 					)}
 				</div>
 			))}
