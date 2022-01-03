@@ -29,7 +29,7 @@ const QuestionAnswersPage = ({
 		<div className="answersPageContainer">
 			{answers.map((answer) => (
 				<div key={answer.id} className="answerContainer">
-					<div>{answer.answer}</div>
+					<div className="answer"> {answer.answer}</div>
 					{/* {user.id === answer.ownerId && (
 						<div>
 							<button
