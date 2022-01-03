@@ -12,3 +12,13 @@
 	box-shadow: 3px 3px 3px 3px rgb(255 0 0 / 60%);
 	width: 80%;
 }
+.answer {
+	padding-right: 1rem;
+}
+
+.answerOptionsContainer {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}

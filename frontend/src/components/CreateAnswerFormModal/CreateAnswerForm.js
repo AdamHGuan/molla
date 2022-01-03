@@ -54,7 +54,7 @@ const CreateAnswerForm = ({ setShowModal }) => {
 	};
 
 	return (
-		<div>
+		<div className="modal-main">
 			<h2>Please provide your answer</h2>
 			{/* {validationErrors.length > 0 && (
 				<div>
@@ -66,7 +66,7 @@ const CreateAnswerForm = ({ setShowModal }) => {
 					</ul>
 				</div>
 			)} */}
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="form-container">
 				<div>
 					{/* <label htmlFor="answer">Answer:</label> */}
 					<textarea

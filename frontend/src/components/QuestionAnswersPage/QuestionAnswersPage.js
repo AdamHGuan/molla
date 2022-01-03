@@ -29,7 +29,7 @@ const QuestionAnswersPage = ({
 		<div className="answersPageContainer">
 			{answers.map((answer) => (
 				<div key={answer.id} className="answerContainer">
-					<div>{answer.answer}</div>
+					<div className="answer"> {answer.answer}</div>
 					{/* {user.id === answer.ownerId && (
 						<div>
 							<button
@@ -51,7 +51,7 @@ const QuestionAnswersPage = ({
 						</div>
 					)} */}
 					{user && user.id === answer.ownerId && (
-						<>
+						<div className="answerOptionsContainer">
 							<div>
 								<button
 									onClick={() => setEditAnswerId(answer.id)}
@@ -69,7 +69,7 @@ const QuestionAnswersPage = ({
 									Delete
 								</button>
 							</div>
-						</>
+						</div>
 					)}
 				</div>
 			))}
