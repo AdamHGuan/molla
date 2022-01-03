@@ -133,7 +133,7 @@ Splash Page
 <img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1640642272/Molla/Screen_Shot_2021-12-27_at_1.56.03_PM_jrbx2a.png" alt="" width="900" height="450">
 
 Questions Psge
-<img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1640642272/Molla/Screen_Shot_2021-12-27_at_1.56.03_PM_jrbx2a.png" alt="" width="900" height="450">
+<img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1641185417/Molla/Screen_Shot_2022-01-02_at_8.49.59_PM_llmh1z.png" alt="" width="900" height="450">
   
 Question and Answers Psge
 <img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1641185459/Molla/Screen_Shot_2022-01-02_at_8.50.39_PM_esiuyn.png" alt="" width="900" height="450">
