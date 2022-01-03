@@ -68,7 +68,6 @@ Molla is a Q & A site for stars, planets, galaxies, and anything astronomy-relat
 * [Express](https://expressjs.com/)
 * [Sequelize](https://sequelize.org/)
 * [PostgreSQL](https://www.postgresql.org/)
-* [Docker](https://www.docker.com/)
 * [Heroku](https://www.heroku.com/)
 
 
