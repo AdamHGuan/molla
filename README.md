@@ -129,6 +129,15 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Splash Page                     
+<img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1640642272/Molla/Screen_Shot_2021-12-27_at_1.56.03_PM_jrbx2a.png" alt="" width="900" height="450">
+
+Questions Psge
+<img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1640642272/Molla/Screen_Shot_2021-12-27_at_1.56.03_PM_jrbx2a.png" alt="" width="900" height="450">
+  
+Question and Answers Psge
+<img src="https://res.cloudinary.com/day-lh2-98-0/image/upload/v1641185459/Molla/Screen_Shot_2022-01-02_at_8.50.39_PM_esiuyn.png" alt="" width="900" height="450">
+                                
 <!-- Signup for a new account, or login to a pre existing account. 
 
 <img src="URL" alt="" width="900" height="450">
